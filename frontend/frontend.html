@@ -1,0 +1,3665 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TallyPower IT Solutions</title>
+
+    <!-- Website favicon -->
+    <link rel="icon" type="image/png" href="images/tally-power-logo.png" />
+
+    <meta
+      name="description"
+      content="TallyPower IT Solutions presents Shivam HMIS - integrated hospital management software for clinical, financial, administrative and operational workflows."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* =========================================================
+       GLOBAL
+    ========================================================= */
+
+      :root {
+        --primary: #1264d8;
+        --primary-dark: #08458f;
+        --secondary: #14b8c4;
+        --teal: #0c9287;
+        --mint: #21d4a8;
+
+        --navy: #061a32;
+        --navy-light: #0b294a;
+
+        --white: #ffffff;
+        --black: #101828;
+
+        --text: #18263a;
+        --muted: #65748a;
+
+        --background: #f5f8fc;
+        --card: #ffffff;
+
+        --border: #e2e9f1;
+        --border-soft: #eef3f9;
+
+        --success: #16a36d;
+        --warning: #e09a26;
+        --danger: #df5555;
+
+        --icon-bg: #edf5ff;
+        --icon-ring: rgba(18, 100, 216, 0.14);
+        --glass: rgba(255, 255, 255, 0.07);
+
+        --shadow: 0 20px 60px rgba(7, 30, 60, 0.1);
+
+        --shadow-soft: 0 10px 30px rgba(7, 30, 60, 0.06);
+
+        --radius: 20px;
+
+        --container: 1200px;
+      }
+
+      .icon {
+        width: 20px;
+        height: 20px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        flex: none;
+      }
+
+      .icon-sm {
+        width: 15px;
+        height: 15px;
+        stroke-width: 2;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--background);
+        color: var(--text);
+        line-height: 1.6;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      button,
+      input,
+      textarea,
+      select {
+        font-family: inherit;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(var(--container), calc(100% - 40px));
+
+        margin: auto;
+      }
+
+      .section {
+        padding: 100px 0;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: "Manrope", sans-serif;
+        line-height: 1.15;
+        letter-spacing: -0.035em;
+      }
+
+      h1 {
+        font-size: clamp(42px, 6vw, 76px);
+      }
+
+      h2 {
+        font-size: clamp(32px, 4vw, 52px);
+      }
+
+      h3 {
+        font-size: 22px;
+      }
+
+      p {
+        color: var(--muted);
+      }
+
+      /* =========================================================
+       BUTTONS
+    ========================================================= */
+
+      .btn {
+        border: none;
+        border-radius: 11px;
+        padding: 13px 20px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        font-weight: 800;
+        font-size: 14px;
+
+        cursor: pointer;
+        transition: 0.25s ease;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: white;
+
+        box-shadow: 0 12px 25px rgba(18, 100, 216, 0.25);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        background: #0d56bd;
+      }
+
+      .btn-white {
+        background: white;
+        color: var(--navy);
+      }
+
+      .btn-white:hover {
+        transform: translateY(-3px);
+      }
+
+      .btn-outline {
+        background: transparent;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.25);
+      }
+
+      .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* =========================================================
+       NAVBAR
+    ========================================================= */
+
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 999;
+
+        background: rgba(255, 255, 255, 0.94);
+
+        backdrop-filter: blur(18px);
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav {
+        height: 78px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 20px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-logo {
+        width: 45px;
+        height: 45px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+        background: white;
+      }
+
+      .brand-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+      }
+
+      .brand-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .brand-text strong {
+        display: block;
+
+        font-family: "Manrope";
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .brand-text span {
+        display: block;
+
+        color: #78869a;
+
+        font-size: 10px;
+        margin-top: 3px;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+
+        font-size: 14px;
+        font-weight: 700;
+
+        color: #58677b;
+      }
+
+      .nav-links a {
+        transition: 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      .nav-buttons {
+        display: flex;
+        gap: 9px;
+      }
+
+      .mobile-menu {
+        display: none;
+
+        border: none;
+        background: transparent;
+
+        font-size: 27px;
+        cursor: pointer;
+      }
+
+      /* =========================================================
+       HERO
+    ========================================================= */
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+
+        color: white;
+
+        padding: 85px 0 95px;
+
+        background:
+          radial-gradient(
+            700px 400px at 95% 0%,
+            rgba(20, 184, 196, 0.25),
+            transparent 65%
+          ),
+          radial-gradient(
+            700px 400px at 0% 80%,
+            rgba(18, 100, 216, 0.28),
+            transparent 65%
+          ),
+          linear-gradient(135deg, #05172e, #092c4e 60%, #084c63);
+      }
+
+      .hero::before {
+        content: "";
+
+        position: absolute;
+        inset: 0;
+
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.09) 1px,
+          transparent 1px
+        );
+
+        background-size: 26px 26px;
+
+        -webkit-mask-image: radial-gradient(
+          800px 500px at 30% 20%,
+          black,
+          transparent 75%
+        );
+
+        mask-image: radial-gradient(
+          800px 500px at 30% 20%,
+          black,
+          transparent 75%
+        );
+
+        pointer-events: none;
+      }
+
+      .hero .container {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-grid {
+        display: grid;
+
+        grid-template-columns: 1.05fr 0.95fr;
+
+        align-items: center;
+
+        gap: 60px;
+      }
+
+      .badge {
+        display: inline-flex;
+
+        align-items: center;
+        gap: 8px;
+
+        padding: 8px 13px;
+
+        border-radius: 999px;
+
+        font-size: 11px;
+        font-weight: 800;
+
+        letter-spacing: 0.08em;
+
+        text-transform: uppercase;
+
+        background: rgba(255, 255, 255, 0.07);
+
+        border: 1px solid rgba(255, 255, 255, 0.16);
+
+        color: #bdeff3;
+      }
+
+      .badge-dot {
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+
+        background: #25d39b;
+
+        box-shadow: 0 0 0 7px rgba(37, 211, 155, 0.12);
+      }
+
+      .hero h1 {
+        margin: 20px 0;
+        max-width: 760px;
+      }
+
+      .hero-gradient {
+        background: linear-gradient(90deg, #ffffff, #76e5eb);
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        color: transparent;
+      }
+
+      .hero-description {
+        max-width: 680px;
+
+        color: #c7d5e6;
+
+        font-size: 18px;
+      }
+
+      .hero-buttons {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 12px;
+
+        margin-top: 30px;
+      }
+
+      .partnership {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        margin-top: 30px;
+
+        color: #aebfd3;
+
+        font-size: 12px;
+      }
+
+      .partner-logo {
+        width: 32px;
+        height: 32px;
+
+        border-radius: 9px;
+
+        display: grid;
+        place-items: center;
+
+        background: white;
+
+        color: var(--navy);
+
+        font-size: 11px;
+        font-weight: 900;
+
+        overflow: hidden;
+      }
+
+      .partner-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      /* =========================================================
+       DASHBOARD MOCKUP
+    ========================================================= */
+
+      .dashboard-wrapper {
+        position: relative;
+
+        padding: 12px;
+
+        border-radius: 25px;
+
+        background: rgba(255, 255, 255, 0.08);
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        box-shadow:
+          0 35px 80px rgba(0, 0, 0, 0.25),
+          0 0 0 1px rgba(255, 255, 255, 0.04),
+          0 0 120px rgba(20, 184, 196, 0.12);
+      }
+
+      .dashboard-wrapper::before {
+        content: "";
+
+        position: absolute;
+        inset: -1px;
+
+        border-radius: 26px;
+
+        padding: 1px;
+
+        background: linear-gradient(
+          135deg,
+          rgba(118, 229, 235, 0.6),
+          rgba(255, 255, 255, 0) 40%
+        );
+
+        -webkit-mask:
+          linear-gradient(#000 0 0) content-box,
+          linear-gradient(#000 0 0);
+
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        pointer-events: none;
+      }
+
+      .dashboard {
+        background: #f7faff;
+
+        border-radius: 17px;
+
+        overflow: hidden;
+
+        color: var(--text);
+      }
+
+      .dashboard-header {
+        height: 55px;
+
+        padding: 0 17px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        background: white;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .dashboard-title {
+        font-size: 12px;
+        font-weight: 900;
+      }
+
+      .live {
+        background: #e9fbf4;
+        color: #07875c;
+
+        border-radius: 999px;
+
+        padding: 5px 9px;
+
+        font-size: 9px;
+        font-weight: 900;
+
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .dashboard-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .dash-icon-btn {
+        width: 26px;
+        height: 26px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 8px;
+
+        background: #f2f6fb;
+
+        color: #64748b;
+
+        position: relative;
+      }
+
+      .dash-icon-btn .icon {
+        width: 13px;
+        height: 13px;
+      }
+
+      .dash-icon-btn .dot {
+        position: absolute;
+
+        top: -2px;
+        right: -2px;
+
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+
+        background: var(--danger);
+
+        border: 2px solid white;
+      }
+
+      .dash-avatar {
+        width: 26px;
+        height: 26px;
+
+        border-radius: 8px;
+
+        display: grid;
+        place-items: center;
+
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+
+        color: white;
+
+        font-size: 9px;
+        font-weight: 900;
+      }
+
+      .dashboard-body {
+        display: grid;
+
+        grid-template-columns: 105px 1fr;
+
+        min-height: 400px;
+      }
+
+      .dashboard-sidebar {
+        background: var(--navy);
+
+        color: #9fb2c8;
+
+        padding: 14px 9px;
+      }
+
+      .sidebar-logo {
+        height: 38px;
+
+        border-radius: 9px;
+
+        display: grid;
+        place-items: center;
+
+        background: #0d2b4e;
+
+        color: white;
+
+        font-size: 12px;
+        font-weight: 900;
+
+        margin-bottom: 14px;
+
+        overflow: hidden;
+      }
+
+      .sidebar-logo img {
+        height: 70%;
+        object-fit: contain;
+      }
+
+      .sidebar-item {
+        padding: 8px 7px;
+
+        border-radius: 7px;
+
+        margin-bottom: 2px;
+
+        font-size: 9px;
+
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .sidebar-item .icon {
+        width: 12px;
+        height: 12px;
+        stroke-width: 2.1;
+      }
+
+      .sidebar-item.active {
+        background: var(--primary);
+        color: white;
+      }
+
+      .dashboard-content {
+        padding: 15px;
+      }
+
+      .metrics {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 8px;
+      }
+
+      .metric {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 10px;
+
+        padding: 11px;
+      }
+
+      .metric span {
+        display: block;
+
+        font-size: 8px;
+
+        color: #7a899c;
+
+        font-weight: 800;
+      }
+
+      .metric strong {
+        display: block;
+
+        margin-top: 4px;
+
+        font-size: 18px;
+      }
+
+      .metric small {
+        color: var(--success);
+
+        font-size: 8px;
+      }
+
+      .chart {
+        margin-top: 10px;
+
+        padding: 14px;
+
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 10px;
+      }
+
+      .chart-title {
+        display: flex;
+        justify-content: space-between;
+
+        font-size: 10px;
+
+        font-weight: 800;
+      }
+
+      .bars {
+        height: 115px;
+
+        display: flex;
+        align-items: end;
+
+        gap: 7px;
+
+        padding-top: 18px;
+      }
+
+      .bar {
+        flex: 1;
+
+        min-height: 15px;
+
+        border-radius: 4px 4px 1px 1px;
+
+        background: linear-gradient(180deg, #20b9c4, #1264d8);
+      }
+
+      .dashboard-bottom {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 10px;
+
+        margin-top: 10px;
+      }
+
+      .mini-card {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 10px;
+
+        padding: 11px;
+
+        font-size: 9px;
+      }
+
+      .mini-card strong {
+        font-size: 15px;
+      }
+
+      .floating-card {
+        position: absolute;
+
+        right: -20px;
+        bottom: -20px;
+
+        min-width: 180px;
+
+        padding: 14px;
+
+        border-radius: 15px;
+
+        background: white;
+
+        color: var(--text);
+
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
+
+      .floating-card span {
+        display: block;
+
+        font-size: 10px;
+
+        color: var(--muted);
+      }
+
+      .floating-card strong {
+        display: block;
+
+        font-size: 24px;
+
+        color: var(--primary);
+      }
+
+      /* =========================================================
+       STATS
+    ========================================================= */
+
+      .stats {
+        background: white;
+
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stats-grid {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .stat {
+        padding: 28px 20px;
+
+        text-align: center;
+
+        border-right: 1px solid var(--border);
+      }
+
+      .stat:last-child {
+        border: none;
+      }
+
+      .stat strong {
+        display: block;
+
+        font-family: "Manrope";
+
+        font-size: 28px;
+
+        color: var(--navy);
+      }
+
+      .stat span {
+        font-size: 12px;
+
+        color: var(--muted);
+      }
+
+      /* =========================================================
+       SECTION HEAD
+    ========================================================= */
+
+      .section-head {
+        max-width: 760px;
+
+        margin-bottom: 45px;
+      }
+
+      .section-head.center {
+        margin-left: auto;
+        margin-right: auto;
+
+        text-align: center;
+      }
+
+      .section-head .badge {
+        color: var(--primary);
+
+        background: white;
+
+        border: 1px solid #dce8f5;
+      }
+
+      .section-head h2 {
+        margin-top: 15px;
+      }
+
+      .section-head p {
+        margin-top: 15px;
+
+        font-size: 17px;
+      }
+
+      /* =========================================================
+       FEATURES
+    ========================================================= */
+
+      .features-grid {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 18px;
+      }
+
+      .feature-card {
+        padding: 26px;
+
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: var(--radius);
+
+        box-shadow: 0 7px 25px rgba(7, 30, 60, 0.04);
+
+        transition: 0.25s;
+      }
+
+      .feature-card:hover {
+        transform: translateY(-5px);
+
+        box-shadow: var(--shadow);
+      }
+
+      .feature-icon {
+        width: 46px;
+        height: 46px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 13px;
+
+        background: var(--icon-bg);
+
+        color: var(--primary);
+
+        box-shadow: 0 0 0 6px var(--icon-ring);
+
+        margin-bottom: 20px;
+      }
+
+      .feature-card p {
+        font-size: 14px;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 6px;
+
+        margin-top: 15px;
+      }
+
+      .tag {
+        padding: 5px 8px;
+
+        border-radius: 7px;
+
+        background: #f2f6fa;
+
+        color: #52657c;
+
+        font-size: 10px;
+
+        font-weight: 800;
+      }
+
+      /* =========================================================
+       MODULES
+    ========================================================= */
+
+      .modules {
+        background: var(--navy);
+
+        color: white;
+      }
+
+      .modules .section-head p {
+        color: #aebed1;
+      }
+
+      .module-tabs {
+        display: flex;
+        flex-wrap: wrap;
+
+        gap: 8px;
+
+        margin-bottom: 25px;
+      }
+
+      .module-tab {
+        border: 1px solid rgba(255, 255, 255, 0.15);
+
+        background: rgba(255, 255, 255, 0.05);
+
+        color: #b9c8da;
+
+        border-radius: 999px;
+
+        padding: 9px 14px;
+
+        font-weight: 800;
+
+        font-size: 12px;
+
+        cursor: pointer;
+      }
+
+      .module-tab.active {
+        background: var(--primary);
+
+        color: white;
+
+        border-color: var(--primary);
+      }
+
+      .module-panel {
+        display: none;
+      }
+
+      .module-panel.active {
+        display: block;
+      }
+
+      .module-grid {
+        display: grid;
+
+        grid-template-columns: repeat(4, 1fr);
+
+        gap: 11px;
+      }
+
+      .module-card {
+        min-height: 105px;
+
+        padding: 17px;
+
+        border-radius: 14px;
+
+        background: rgba(255, 255, 255, 0.06);
+
+        border: 1px solid rgba(255, 255, 255, 0.1);
+
+        transition: 0.2s;
+      }
+
+      .module-card:hover {
+        transform: translateY(-3px);
+
+        background: rgba(255, 255, 255, 0.11);
+      }
+
+      .module-number {
+        color: #70e0e6;
+
+        font-size: 10px;
+
+        font-weight: 900;
+      }
+
+      .module-card strong {
+        display: block;
+
+        margin-top: 8px;
+
+        font-size: 14px;
+      }
+
+      .module-card span {
+        display: block;
+
+        margin-top: 4px;
+
+        color: #9eafc4;
+
+        font-size: 11px;
+      }
+
+      /* =========================================================
+       CONTROL TOWER
+    ========================================================= */
+
+      .control-tower {
+        background: white;
+      }
+
+      .tower-grid {
+        display: grid;
+
+        grid-template-columns: 0.8fr 1.2fr;
+
+        gap: 60px;
+
+        align-items: center;
+      }
+
+      .check-list {
+        display: grid;
+
+        gap: 15px;
+
+        margin-top: 25px;
+      }
+
+      .check {
+        display: flex;
+
+        gap: 12px;
+      }
+
+      .check-icon {
+        width: 25px;
+        height: 25px;
+
+        flex: none;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 8px;
+
+        background: #e8faf3;
+
+        color: var(--success);
+
+        font-weight: 900;
+      }
+
+      .check-icon .icon,
+      .company-point-icon .icon,
+      .contact-icon .icon {
+        width: 14px;
+        height: 14px;
+        stroke-width: 2.4;
+      }
+
+      .check strong {
+        display: block;
+
+        font-size: 14px;
+      }
+
+      .check span {
+        display: block;
+
+        color: var(--muted);
+
+        font-size: 12px;
+      }
+
+      /* Dashboard UI */
+
+      .tower-dashboard {
+        padding: 16px;
+
+        border-radius: 24px;
+
+        background: #f5f8fc;
+
+        border: 1px solid var(--border);
+
+        box-shadow: var(--shadow);
+      }
+
+      .tower-header {
+        display: flex;
+
+        justify-content: space-between;
+
+        margin-bottom: 12px;
+      }
+
+      .tower-header strong {
+        font-family: "Manrope";
+      }
+
+      .filter {
+        padding: 7px 10px;
+
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 8px;
+
+        font-size: 10px;
+      }
+
+      .tower-metrics {
+        display: grid;
+
+        grid-template-columns: repeat(3, 1fr);
+
+        gap: 10px;
+      }
+
+      .tower-metric {
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 12px;
+
+        padding: 13px;
+      }
+
+      .tower-metric label {
+        color: #7b899b;
+
+        font-size: 9px;
+      }
+
+      .tower-metric strong {
+        display: block;
+
+        font-size: 22px;
+
+        margin: 4px 0;
+      }
+
+      .tower-metric span {
+        color: var(--success);
+
+        font-size: 9px;
+      }
+
+      .tower-table {
+        margin-top: 10px;
+
+        background: white;
+
+        border: 1px solid var(--border);
+
+        border-radius: 12px;
+
+        overflow: hidden;
+      }
+
+      .tower-row {
+        display: grid;
+
+        grid-template-columns: 1.5fr 0.7fr 0.7fr;
+
+        padding: 11px 13px;
+
+        border-bottom: 1px solid var(--border);
+
+        font-size: 10px;
+      }
+
+      .tower-row:last-child {
+        border: none;
+      }
+
+      .tower-row.head {
+        color: #7a899b;
+
+        background: #f7f9fc;
+
+        font-weight: 800;
+      }
+
+      /* =========================================================
+       APPS
+    ========================================================= */
+
+      .apps {
+        background: linear-gradient(180deg, #f5f8fc, #ffffff);
+      }
+
+      .apps-grid {
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 16px;
+
+        max-width: 720px;
+
+        margin: auto;
+      }
+
+      .app-card {
+        padding: 24px;
+
+        border-radius: 18px;
+
+        background: white;
+
+        border: 1px solid var(--border);
+      }
+
+      .app-icon {
+        width: 48px;
+        height: 48px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 14px;
+
+        background: linear-gradient(135deg, var(--navy), #103a63);
+
+        color: white;
+
+        margin-bottom: 17px;
+      }
+
+      .app-icon .icon {
+        width: 22px;
+        height: 22px;
+      }
+
+      .app-card p {
+        font-size: 13px;
+      }
+
+      /* =========================================================
+       WHY TALLYPOWER
+    ========================================================= */
+
+      .company {
+        background: white;
+      }
+
+      .company-grid {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 55px;
+
+        align-items: center;
+      }
+
+      .company-image {
+        min-height: 430px;
+
+        border-radius: 25px;
+
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(20, 184, 196, 0.35),
+            transparent 30%
+          ),
+          linear-gradient(135deg, #071a33, #0c5570);
+
+        display: grid;
+        place-items: center;
+
+        color: white;
+      }
+
+      .company-visual {
+        text-align: center;
+      }
+
+      .company-visual .big-logo {
+        width: 160px;
+        height: 160px;
+
+        margin: auto;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 28px;
+
+        background: white;
+
+        color: var(--primary);
+
+        font-size: 30px;
+
+        font-weight: 900;
+
+        padding: 14px;
+
+        overflow: hidden;
+      }
+
+      .company-visual .big-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      .company-visual h3 {
+        margin-top: 20px;
+      }
+
+      .company-visual p {
+        color: #b8cadc;
+
+        max-width: 360px;
+
+        margin: 8px auto;
+      }
+
+      .company-points {
+        display: grid;
+
+        gap: 15px;
+
+        margin-top: 25px;
+      }
+
+      .company-point {
+        display: flex;
+
+        gap: 12px;
+      }
+
+      .company-point-icon {
+        width: 27px;
+        height: 27px;
+
+        flex: none;
+
+        border-radius: 8px;
+
+        display: grid;
+        place-items: center;
+
+        background: #edf5ff;
+
+        color: var(--primary);
+
+        font-weight: 900;
+      }
+
+      .company-point strong {
+        display: block;
+
+        font-size: 14px;
+      }
+
+      .company-point span {
+        display: block;
+
+        color: var(--muted);
+
+        font-size: 12px;
+      }
+
+      /* =========================================================
+       CAMPAIGN / EVENT
+    ========================================================= */
+
+      .campaign {
+        color: white;
+
+        background:
+          radial-gradient(
+            600px 350px at 100% 0%,
+            rgba(20, 184, 196, 0.3),
+            transparent 70%
+          ),
+          linear-gradient(135deg, #09244a, #062038);
+      }
+
+      .campaign-grid {
+        display: grid;
+
+        grid-template-columns: 1.05fr 0.95fr;
+
+        gap: 50px;
+
+        align-items: center;
+      }
+
+      .campaign p {
+        color: #c5dce5;
+
+        font-size: 16px;
+
+        margin-top: 15px;
+
+        max-width: 600px;
+      }
+
+      .campaign-details {
+        display: grid;
+
+        gap: 14px;
+
+        margin-top: 25px;
+      }
+
+      .campaign-detail {
+        display: flex;
+
+        gap: 12px;
+
+        align-items: flex-start;
+      }
+
+      .campaign-detail-icon {
+        width: 30px;
+        height: 30px;
+
+        flex: none;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 9px;
+
+        background: rgba(255, 255, 255, 0.1);
+
+        color: #76e5eb;
+      }
+
+      .campaign-detail strong {
+        display: block;
+
+        font-size: 14px;
+      }
+
+      .campaign-detail span {
+        display: block;
+
+        color: #b8cadc;
+
+        font-size: 12px;
+      }
+
+      .campaign-image {
+        border-radius: 22px;
+
+        overflow: hidden;
+
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.35);
+
+        border: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .campaign-image img {
+        width: 100%;
+        display: block;
+      }
+
+      /* =========================================================
+       DEMO CTA
+    ========================================================= */
+
+      .demo {
+        color: white;
+
+        background:
+          radial-gradient(
+            500px 300px at 100% 0%,
+            rgba(20, 184, 196, 0.3),
+            transparent 70%
+          ),
+          linear-gradient(135deg, #09244a, #087081);
+      }
+
+      .demo-grid {
+        display: grid;
+
+        grid-template-columns: 1.1fr 0.9fr;
+
+        gap: 50px;
+
+        align-items: center;
+      }
+
+      .demo p {
+        color: #c5dce5;
+
+        font-size: 17px;
+
+        margin-top: 15px;
+
+        max-width: 650px;
+      }
+
+      .demo-card {
+        background: white;
+
+        color: var(--text);
+
+        padding: 26px;
+
+        border-radius: 22px;
+
+        box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
+      }
+
+      .demo-card p {
+        color: var(--muted);
+
+        font-size: 12px;
+
+        margin-bottom: 20px;
+      }
+
+      .form-grid {
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 12px;
+      }
+
+      .form-group {
+        margin-bottom: 12px;
+      }
+
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+
+      .form-group label {
+        display: block;
+
+        color: #43546a;
+
+        font-size: 11px;
+
+        font-weight: 800;
+
+        margin-bottom: 5px;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+
+        padding: 11px 12px;
+
+        border: 1px solid #dce5ee;
+
+        border-radius: 10px;
+
+        outline: none;
+
+        background: #fbfdff;
+
+        color: var(--text);
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        border-color: var(--primary);
+
+        box-shadow: 0 0 0 3px rgba(18, 100, 216, 0.1);
+      }
+
+      .demo-card .btn {
+        width: 100%;
+      }
+
+      .form-note {
+        text-align: center;
+
+        color: #7d8998;
+
+        font-size: 9px;
+
+        margin-top: 10px;
+      }
+
+      /* =========================================================
+       CONTACT
+    ========================================================= */
+
+      .contact {
+        background: white;
+      }
+
+      .contact-grid {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        gap: 50px;
+
+        align-items: center;
+      }
+
+      .contact-list {
+        display: grid;
+
+        gap: 12px;
+
+        margin-top: 25px;
+      }
+
+      .contact-item {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+
+        font-size: 14px;
+      }
+
+      .contact-icon {
+        width: 36px;
+        height: 36px;
+
+        display: grid;
+        place-items: center;
+
+        border-radius: 10px;
+
+        background: #edf5ff;
+
+        color: var(--primary);
+
+        font-weight: 900;
+      }
+
+      /* =========================================================
+       FOOTER
+    ========================================================= */
+
+      footer {
+        background: #04162c;
+
+        color: #9fb1c7;
+
+        padding: 32px 0;
+      }
+
+      .footer-content {
+        display: flex;
+
+        justify-content: space-between;
+
+        gap: 20px;
+
+        flex-wrap: wrap;
+      }
+
+      .footer-brand {
+        color: white;
+
+        font-family: "Manrope";
+
+        font-weight: 900;
+      }
+
+      .footer-small {
+        margin-top: 5px;
+
+        font-size: 11px;
+      }
+
+      .footer-links {
+        display: flex;
+
+        gap: 20px;
+
+        font-size: 12px;
+      }
+
+      .footer-links a:hover {
+        color: white;
+      }
+
+      /* =========================================================
+       TOAST
+    ========================================================= */
+
+      .toast {
+        position: fixed;
+
+        right: 20px;
+        bottom: 20px;
+
+        z-index: 2000;
+
+        padding: 14px 17px;
+
+        border-radius: 12px;
+
+        background: var(--navy);
+
+        color: white;
+
+        font-size: 13px;
+
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+
+        transform: translateY(120px);
+
+        opacity: 0;
+
+        transition: 0.3s;
+      }
+
+      .toast.show {
+        transform: translateY(0);
+
+        opacity: 1;
+      }
+
+      /* =========================================================
+       RESPONSIVE
+    ========================================================= */
+
+      @media (max-width: 1000px) {
+        .nav-links,
+        .nav-buttons {
+          display: none;
+        }
+
+        .mobile-menu {
+          display: block;
+        }
+
+        .hero-grid,
+        .tower-grid,
+        .company-grid,
+        .campaign-grid,
+        .demo-grid,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .features-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .apps-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .module-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .hero {
+          padding-top: 65px;
+        }
+      }
+
+      @media (max-width: 700px) {
+        .container {
+          width: calc(100% - 28px);
+        }
+
+        .section {
+          padding: 70px 0;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .stat {
+          border-bottom: 1px solid var(--border);
+        }
+
+        .features-grid,
+        .apps-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .module-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .metrics {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .dashboard-body {
+          grid-template-columns: 75px 1fr;
+        }
+
+        .tower-metrics {
+          grid-template-columns: 1fr;
+        }
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .form-group.full {
+          grid-column: auto;
+        }
+
+        .hero-buttons .btn {
+          width: 100%;
+        }
+
+        .floating-card {
+          right: 5px;
+        }
+      }
+
+      @media (max-width: 450px) {
+        h1 {
+          font-size: 40px;
+        }
+
+        .module-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .dashboard-content {
+          padding: 9px;
+        }
+
+        .sidebar-item {
+          font-size: 8px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- =======================================================
+       NAVIGATION
+  ======================================================== -->
+
+    <header class="navbar">
+      <div class="container">
+        <nav class="nav">
+          <a href="#home" class="brand">
+            <div class="brand-logo">
+              <img
+                src="images/tally power logo.png"
+                alt="Tally HIMS Logo"
+                style="width: 150px; height: 50px; object-fit: contain"
+              />
+            </div>
+
+            <div class="brand-text">
+              <strong> TALLYPOWER IT SOLUTIONS </strong>
+
+              <span> TallyPower • Vadodara, Gujarat </span>
+            </div>
+          </a>
+
+          <div class="nav-links">
+            <a href="#solutions"> Solutions </a>
+
+            <a href="#modules"> Modules </a>
+
+            <a href="#control-tower"> Control Tower </a>
+
+            <a href="#apps"> Apps </a>
+
+            <a href="#company"> Company </a>
+
+            <a href="#event"> Expo 2026 </a>
+
+            <a href="#contact"> Contact </a>
+          </div>
+
+          <div class="nav-buttons">
+            <a
+              href="#contact"
+              class="btn btn-white"
+              style="color: #061a32; border: 1px solid #dce5ef"
+            >
+              Contact
+            </a>
+
+            <a href="#demo" class="btn btn-primary"> Book Demo → </a>
+          </div>
+
+          <button class="mobile-menu" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- =====================================================
+         HERO
+    ====================================================== -->
+
+      <section class="hero" id="home">
+        <div class="container">
+          <div class="hero-grid">
+            <div>
+              <div class="badge">
+                <span class="badge-dot"></span>
+                Healthcare Technology • Gujarat
+              </div>
+
+              <h1>
+                One intelligent system for your entire
+                <span class="hero-gradient"> hospital. </span>
+              </h1>
+
+              <p class="hero-description">
+                TallyPower IT Solutions brings Shivam HMIS to hospitals in
+                Gujarat, connecting clinical care, billing, pharmacy, finance,
+                operations and management through one integrated hospital
+                information system.
+              </p>
+
+              <div class="hero-buttons">
+                <a href="#demo" class="btn btn-primary"> Book Free Demo → </a>
+
+                <a href="#modules" class="btn btn-outline">
+                  Explore HMIS Modules
+                </a>
+              </div>
+
+              <div class="partnership">
+                <div class="partner-logo">
+                  <div class="brand-logo">
+                    <img
+                      src="images/tally power logo.png"
+                      alt="Tally HIMS Logo"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        display: block;
+                      "
+                    />
+                  </div>
+                </div>
+
+                <span> TallyPower IT Solutions </span>
+
+                <strong> × </strong>
+
+                <div class="partner-logo">SH</div>
+
+                <span> Shivam HMIS </span>
+              </div>
+            </div>
+
+            <!-- DASHBOARD -->
+
+            <div class="dashboard-wrapper">
+              <div class="dashboard">
+                <div class="dashboard-header">
+                  <span class="dashboard-title">
+                    SHIVAM HMIS · CONTROL TOWER
+                  </span>
+
+                  <div class="dashboard-actions">
+                    <span class="live">
+                      <svg class="icon icon-sm" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="4" />
+                      </svg>
+                      LIVE
+                    </span>
+
+                    <div class="dash-icon-btn">
+                      <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                          d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"
+                        />
+                        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                      </svg>
+                      <span class="dot"></span>
+                    </div>
+
+                    <div class="dash-avatar">RS</div>
+                  </div>
+                </div>
+
+                <div class="dashboard-body">
+                  <aside class="dashboard-sidebar">
+                    <div class="sidebar-logo">
+                      <img src="assets/logo-icon.png" alt="TallyPower" />
+                    </div>
+
+                    <div class="sidebar-item active">
+                      <svg class="icon" viewBox="0 0 24 24">
+                        <rect x="3" y="3" width="7" height="9" rx="1" />
+                        <rect x="14" y="3" width="7" height="5" rx="1" />
+                        <rect x="14" y="12" width="7" height="9" rx="1" />
+                        <rect x="3" y="16" width="7" height="5" rx="1" />
+                      </svg>
+                      Overview
+                    </div>
+
+                    <div class="sidebar-item">
+                      <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M4 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2" />
+                        <circle cx="9" cy="7" r="3" />
+                        <path d="M17 11a3 3 0 1 0 0-6" />
+                      </svg>
+                      Admissions
+                    </div>
+
+                    <div class="sidebar-item">
+                      <svg class="icon" viewBox="0 0 24 24">
+                        <rect x="2" y="5" width="20" height="14" rx="2" />
+                        <path d="M2 10h20" />
+                      </svg>
+                      Billing
+                    </div>
+
+                    <div class="sidebar-item">
+                      <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M9 3h6" />
+                        <path
+                          d="M10 3v5.5L5 18a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9.5V3"
+                        />
+                      </svg>
+                      Pharmacy
+                    </div>
+
+                    <div class="sidebar-item">
+                      <svg class="icon" viewBox="0 0 24 24">
+                        <path
+                          d="M9 2v6L4 19a1.5 1.5 0 0 0 1.4 2h13.2A1.5 1.5 0 0 0 20 19L15 8V2"
+                        />
+                        <path d="M7 15h10" />
+                      </svg>
+                      Laboratory
+                    </div>
+
+                    <div class="sidebar-item">
+                      <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M3 3v18h18" />
+                        <path d="m7 15 3-4 3 2 5-6" />
+                      </svg>
+                      Finance
+                    </div>
+
+                    <div class="sidebar-item">
+                      <svg class="icon" viewBox="0 0 24 24">
+                        <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+                        <path
+                          d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"
+                        />
+                        <path d="M9 13h6M9 17h6" />
+                      </svg>
+                      Reports
+                    </div>
+                  </aside>
+
+                  <div class="dashboard-content">
+                    <div class="metrics">
+                      <div class="metric">
+                        <span> OCCUPANCY </span>
+
+                        <strong> 82% </strong>
+
+                        <small> ↑ 4.2% </small>
+                      </div>
+
+                      <div class="metric">
+                        <span> IP BILLING </span>
+
+                        <strong> ₹18.4L </strong>
+
+                        <small> ↑ 8.1% </small>
+                      </div>
+
+                      <div class="metric">
+                        <span> PHARMACY </span>
+
+                        <strong> ₹7.2L </strong>
+
+                        <small> Stock monitored </small>
+                      </div>
+
+                      <div class="metric">
+                        <span> OUTSTANDING </span>
+
+                        <strong> ₹31.6L </strong>
+
+                        <small> 12 flagged </small>
+                      </div>
+                    </div>
+
+                    <div class="chart">
+                      <div class="chart-title">
+                        <span> Revenue & Operations </span>
+
+                        <span> Last 30 Days </span>
+                      </div>
+
+                      <div class="bars">
+                        <div class="bar" style="height: 38%"></div>
+
+                        <div class="bar" style="height: 52%"></div>
+
+                        <div class="bar" style="height: 45%"></div>
+
+                        <div class="bar" style="height: 67%"></div>
+
+                        <div class="bar" style="height: 57%"></div>
+
+                        <div class="bar" style="height: 78%"></div>
+
+                        <div class="bar" style="height: 70%"></div>
+
+                        <div class="bar" style="height: 90%"></div>
+
+                        <div class="bar" style="height: 83%"></div>
+
+                        <div class="bar" style="height: 96%"></div>
+                      </div>
+                    </div>
+
+                    <div class="dashboard-bottom">
+                      <div class="mini-card">
+                        Pending Tasks
+
+                        <br />
+
+                        <strong> 28 </strong>
+                      </div>
+
+                      <div class="mini-card">
+                        Critical Alerts
+
+                        <br />
+
+                        <strong> 06 </strong>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="floating-card">
+                <span> Integrated HMIS </span>
+
+                <strong> 45+ </strong>
+
+                <span> Hospital modules </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         STATS
+    ====================================================== -->
+
+      <section class="stats">
+        <div class="container">
+          <div class="stats-grid">
+            <div class="stat">
+              <strong> 45+ </strong>
+
+              <span> Integrated HMIS Modules </span>
+            </div>
+
+            <div class="stat">
+              <strong> Web </strong>
+
+              <span> Hospital Management Platform </span>
+            </div>
+
+            <div class="stat">
+              <strong> Mobile </strong>
+
+              <span> Doctor & Patient Apps </span>
+            </div>
+
+            <div class="stat">
+              <strong> Gujarat </strong>
+
+              <span> TallyPower IT Solutions Support </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         SOLUTIONS
+    ====================================================== -->
+
+      <section class="section" id="solutions">
+        <div class="container">
+          <div class="section-head">
+            <div class="badge">
+              <span class="badge-dot"></span>
+              Shivam HMIS
+            </div>
+
+            <h2>More than hospital software. A connected operating system.</h2>
+
+            <p>
+              Connect departments, workflows, people and information through an
+              integrated HMIS platform.
+            </p>
+          </div>
+
+          <div class="features-grid">
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="7" height="9" rx="1" />
+                  <rect x="14" y="3" width="7" height="5" rx="1" />
+                  <rect x="14" y="12" width="7" height="9" rx="1" />
+                  <rect x="3" y="16" width="7" height="5" rx="1" />
+                </svg>
+              </div>
+
+              <h3>Control Tower</h3>
+
+              <p>
+                Comprehensive departmental metrics help management identify
+                bottlenecks and take action quickly.
+              </p>
+
+              <div class="tags">
+                <span class="tag"> Live Metrics </span>
+
+                <span class="tag"> Dashboards </span>
+
+                <span class="tag"> Management </span>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" />
+                  <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+                </svg>
+              </div>
+
+              <h3>Ever-ready Assistant</h3>
+
+              <p>
+                Organize and monitor tasks with real-time notifications across
+                hospital workflows.
+              </p>
+
+              <div class="tags">
+                <span class="tag"> Tasks </span>
+
+                <span class="tag"> Notifications </span>
+
+                <span class="tag"> Workflow </span>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6l-8-3Z" />
+                  <path d="m9 12 2 2 4-4" />
+                </svg>
+              </div>
+
+              <h3>Quality Indicators</h3>
+
+              <p>
+                Automated NABH indicators support standardization, monitoring
+                and continuous improvement.
+              </p>
+
+              <div class="tags">
+                <span class="tag"> NABH </span>
+
+                <span class="tag"> Quality </span>
+
+                <span class="tag"> Compliance </span>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M9 3h6" />
+                  <path
+                    d="M10 3v5.5L5 18a2 2 0 0 0 1.8 3h10.4a2 2 0 0 0 1.8-3l-5-9.5V3"
+                  />
+                  <path d="M7.5 15h9" />
+                </svg>
+              </div>
+
+              <h3>Patient Medicine Reminder</h3>
+
+              <p>
+                Prescription-based reminders assist nursing teams with timely
+                medication administration.
+              </p>
+
+              <div class="tags">
+                <span class="tag"> Medicine </span>
+
+                <span class="tag"> Nursing </span>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <rect x="2" y="6" width="14" height="12" rx="2" />
+                  <path d="m16 10 6-3v10l-6-3" />
+                </svg>
+              </div>
+
+              <h3>Consult Online</h3>
+
+              <p>
+                Enable online consultation workflows from supported devices.
+              </p>
+
+              <div class="tags">
+                <span class="tag"> Consultation </span>
+
+                <span class="tag"> Remote </span>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                </svg>
+              </div>
+
+              <h3>Remote Monitoring</h3>
+
+              <p>
+                Doctors can review relevant patient information and reports
+                remotely.
+              </p>
+
+              <div class="tags">
+                <span class="tag"> Doctor </span>
+
+                <span class="tag"> Mobile </span>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M4 21v-6M4 11V3M12 21v-9M12 8V3M20 21v-4M20 13V3" />
+                  <path d="M2 15h4M10 8h4M18 13h4" />
+                </svg>
+              </div>
+
+              <h3>Do It Yourself</h3>
+
+              <p>
+                Create process flows, dashboards, control towers and reports
+                with basic technical knowledge.
+              </p>
+
+              <div class="tags">
+                <span class="tag"> Configurable </span>
+
+                <span class="tag"> Reports </span>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="m3 17 6-6 4 4 8-8" />
+                  <path d="M17 7h4v4" />
+                </svg>
+              </div>
+
+              <h3>Track Revenue</h3>
+
+              <p>
+                Track revenue generation and expenses through different hospital
+                modules.
+              </p>
+
+              <div class="tags">
+                <span class="tag"> Revenue </span>
+
+                <span class="tag"> Finance </span>
+              </div>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <rect x="2" y="4" width="14" height="10" rx="1" />
+                  <path d="M2 18h14" />
+                  <rect x="17" y="9" width="5" height="10" rx="1" />
+                </svg>
+              </div>
+
+              <h3>Web & Mobile</h3>
+
+              <p>
+                Digitalize hospital workflows across web and mobile platforms.
+              </p>
+
+              <div class="tags">
+                <span class="tag"> Web </span>
+
+                <span class="tag"> Mobile </span>
+
+                <span class="tag"> Tablet </span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         MODULES
+    ====================================================== -->
+
+      <section class="section modules" id="modules">
+        <div class="container">
+          <div class="section-head">
+            <div class="badge">
+              <span class="badge-dot"></span>
+              Complete HMIS
+            </div>
+
+            <h2>Explore the hospital modules.</h2>
+
+            <p>
+              Shivam's published platform organizes hospital workflows across
+              Income, Expense and EMR modules.
+            </p>
+          </div>
+
+          <div class="module-tabs">
+            <button class="module-tab active" data-module="income">
+              Income & Operations
+            </button>
+
+            <button class="module-tab" data-module="expense">
+              Expense & Administration
+            </button>
+
+            <button class="module-tab" data-module="emr">EMR & Clinical</button>
+          </div>
+
+          <!-- INCOME -->
+
+          <div class="module-panel active" id="income">
+            <div class="module-grid">
+              <div class="module-card">
+                <div class="module-number">01</div>
+                <strong>Appointments</strong>
+                <span>Appointment scheduling</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">02</div>
+                <strong>Out-patient Management</strong>
+                <span>OPD workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">03</div>
+                <strong>E-Prescription</strong>
+                <span>Digital prescriptions</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">04</div>
+                <strong>In-patient</strong>
+                <span>IPD management</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">05</div>
+                <strong>Ward Management</strong>
+                <span>Ward operations</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">06</div>
+                <strong>OT Management</strong>
+                <span>Operation theatre</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">07</div>
+                <strong>Billing</strong>
+                <span>Hospital billing</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">08</div>
+                <strong>Claim Management</strong>
+                <span>Claims and TPA</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">09</div>
+                <strong>Pharmacy Management</strong>
+                <span>Pharmacy operations</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">10</div>
+                <strong>Lab Management</strong>
+                <span>Laboratory workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">11</div>
+                <strong>Blood Bank</strong>
+                <span>Blood bank operations</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">12</div>
+                <strong>Detailed MIS Reports</strong>
+                <span>Management reporting</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">13</div>
+                <strong>Canteen Management</strong>
+                <span>Canteen workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">14</div>
+                <strong>Linen Management</strong>
+                <span>Linen operations</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">15</div>
+                <strong>Home Request</strong>
+                <span>Home service requests</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EXPENSE -->
+
+          <div class="module-panel" id="expense">
+            <div class="module-grid">
+              <div class="module-card">
+                <div class="module-number">01</div>
+                <strong>Finance</strong>
+                <span>Financial management</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">02</div>
+                <strong>Doctor</strong>
+                <span>Doctor accounting</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">03</div>
+                <strong>Supply Chain</strong>
+                <span>Supply workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">04</div>
+                <strong>Work Order Management</strong>
+                <span>Work orders</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">05</div>
+                <strong>Leave Management</strong>
+                <span>Staff leave</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">06</div>
+                <strong>HR Management</strong>
+                <span>Human resources</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">07</div>
+                <strong>Assets</strong>
+                <span>Asset management</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">08</div>
+                <strong>MRD</strong>
+                <span>Medical records</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">09</div>
+                <strong>Housekeeping</strong>
+                <span>Housekeeping operations</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">10</div>
+                <strong>CSSD</strong>
+                <span>Central sterile services</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">11</div>
+                <strong>Patient Feedback</strong>
+                <span>Feedback workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">12</div>
+                <strong>Risk Management</strong>
+                <span>Risk management</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">13</div>
+                <strong>IT Management</strong>
+                <span>IT operations</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EMR -->
+
+          <div class="module-panel" id="emr">
+            <div class="module-grid">
+              <div class="module-card">
+                <div class="module-number">01</div>
+                <strong>ER Management</strong>
+                <span>Emergency workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">02</div>
+                <strong>Consulting EMR</strong>
+                <span>Clinical documentation</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">03</div>
+                <strong>Ward DMO</strong>
+                <span>Ward doctor workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">04</div>
+                <strong>Ward Nurse</strong>
+                <span>Nursing workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">05</div>
+                <strong>ICU DMO</strong>
+                <span>ICU doctor workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">06</div>
+                <strong>ICU Nurse</strong>
+                <span>ICU nursing workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">07</div>
+                <strong>PICU DMO</strong>
+                <span>Pediatric ICU doctor</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">08</div>
+                <strong>PICU Nurse</strong>
+                <span>Pediatric ICU nursing</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">09</div>
+                <strong>Obstetric EMR</strong>
+                <span>Obstetric workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">10</div>
+                <strong>Pediatric EMR</strong>
+                <span>Pediatric workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">11</div>
+                <strong>Dialysis</strong>
+                <span>Dialysis workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">12</div>
+                <strong>Chemotherapy</strong>
+                <span>Oncology workflow</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">13</div>
+                <strong>Anesthesia</strong>
+                <span>Anesthesia workflows</span>
+              </div>
+
+              <div class="module-card">
+                <div class="module-number">14</div>
+                <strong>QMS</strong>
+                <span>Quality management</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         CONTROL TOWER
+    ====================================================== -->
+
+      <section class="section control-tower" id="control-tower">
+        <div class="container">
+          <div class="tower-grid">
+            <div>
+              <div class="badge">
+                <span class="badge-dot"></span>
+                Management Visibility
+              </div>
+
+              <h2 style="margin-top: 15px">
+                See your hospital. Find the bottleneck. Act faster.
+              </h2>
+
+              <p style="margin-top: 15px">
+                Control Tower brings departmental metrics together so hospital
+                management can focus on what needs attention.
+              </p>
+
+              <div class="check-list">
+                <div class="check">
+                  <div class="check-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </div>
+
+                  <div>
+                    <strong> Departmental Dashboards </strong>
+
+                    <span>
+                      Monitor important hospital metrics from different
+                      departments.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="check">
+                  <div class="check-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </div>
+
+                  <div>
+                    <strong> Action-oriented Workflows </strong>
+
+                    <span>
+                      Surface pending work requiring management attention.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="check">
+                  <div class="check-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </div>
+
+                  <div>
+                    <strong> Revenue & Expense Visibility </strong>
+
+                    <span>
+                      Track revenue generation and expenses across modules.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="check">
+                  <div class="check-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </div>
+
+                  <div>
+                    <strong> Configurable Reporting </strong>
+
+                    <span> Create dashboards, reports and process flows. </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tower-dashboard">
+              <div class="tower-header">
+                <strong> Hospital Control Tower </strong>
+
+                <span class="filter"> Today ▾ </span>
+              </div>
+
+              <div class="tower-metrics">
+                <div class="tower-metric">
+                  <label> OCCUPANCY </label>
+
+                  <strong> 82% </strong>
+
+                  <span> ↑ 4.2% </span>
+                </div>
+
+                <div class="tower-metric">
+                  <label> PENDING BILLS </label>
+
+                  <strong> 124 </strong>
+
+                  <span> 18 need attention </span>
+                </div>
+
+                <div class="tower-metric">
+                  <label> PHARMACY </label>
+
+                  <strong> ₹7.2L </strong>
+
+                  <span> Stock monitored </span>
+                </div>
+              </div>
+
+              <div class="tower-table">
+                <div class="tower-row head">
+                  <span> Department </span>
+
+                  <span> Pending </span>
+
+                  <span> Status </span>
+                </div>
+
+                <div class="tower-row">
+                  <span> Billing </span>
+
+                  <strong> 18 </strong>
+
+                  <span style="color: #d47d20"> Review </span>
+                </div>
+
+                <div class="tower-row">
+                  <span> Pharmacy </span>
+
+                  <strong> 07 </strong>
+
+                  <span style="color: #0b9867"> Normal </span>
+                </div>
+
+                <div class="tower-row">
+                  <span> Laboratory </span>
+
+                  <strong> 12 </strong>
+
+                  <span style="color: #0b9867"> Normal </span>
+                </div>
+
+                <div class="tower-row">
+                  <span> Claims </span>
+
+                  <strong> 09 </strong>
+
+                  <span style="color: #d47d20"> Review </span>
+                </div>
+
+                <div class="tower-row">
+                  <span> MRD </span>
+
+                  <strong> 04 </strong>
+
+                  <span style="color: #0b9867"> Normal </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         MOBILE APPS
+    ====================================================== -->
+
+      <section class="section apps" id="apps">
+        <div class="container">
+          <div class="section-head center">
+            <div class="badge">
+              <span class="badge-dot"></span>
+              Connected Apps
+            </div>
+
+            <h2>Hospital access beyond the desktop.</h2>
+
+            <p>Connected mobile experiences for doctors and patients.</p>
+          </div>
+
+          <div class="apps-grid">
+            <article class="app-card">
+              <div class="app-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <path d="M6 3v6a4 4 0 0 0 8 0V3" />
+                  <path d="M10 9v3a5 5 0 0 0 5 5 5 5 0 0 0 5-5v-1" />
+                  <circle cx="20" cy="6" r="2" />
+                </svg>
+              </div>
+
+              <h3>Doctor App</h3>
+
+              <p>
+                Doctors can access patient history, reports, appointment
+                schedules and medical prescriptions.
+              </p>
+            </article>
+
+            <article class="app-card">
+              <div class="app-icon">
+                <svg class="icon" viewBox="0 0 24 24">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 21v-1a6 6 0 0 1 6-6h1" />
+                  <path
+                    d="M17.5 21s-3.5-2-3.5-4.5a2 2 0 0 1 3.5-1.3 2 2 0 0 1 3.5 1.3c0 2.5-3.5 4.5-3.5 4.5Z"
+                  />
+                </svg>
+              </div>
+
+              <h3>Patient App</h3>
+
+              <p>
+                Patients can view invoices and reports, book appointments and
+                provide feedback.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         COMPANY
+    ====================================================== -->
+
+      <section class="section company" id="company">
+        <div class="container">
+          <div class="company-grid">
+            <div class="company-image">
+              <div class="company-visual">
+                <div class="big-logo">
+                  <img
+                    src="images/tally power logo.png"
+                    alt="TallyPower IT Solutions logo"
+                  />
+                </div>
+
+                <h3>TallyPower IT Solutions</h3>
+
+                <p>TallyPower • Vadodara</p>
+
+                <p>
+                  Technology, implementation and local business software
+                  support.
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <div class="badge">
+                <span class="badge-dot"></span>
+                TallyPower IT Solutions
+              </div>
+
+              <h2 style="margin-top: 15px">
+                Your local technology partner in Gujarat.
+              </h2>
+
+              <p style="margin-top: 15px">
+                TallyPower IT Solutions is based in Vadodara and has a long
+                history of providing business software and technology services,
+                empowering IT solutions since 1991.
+              </p>
+
+              <div class="company-points">
+                <div class="company-point">
+                  <div class="company-point-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </div>
+
+                  <div>
+                    <strong> Vadodara Based </strong>
+
+                    <span> Local presence for Gujarat customers. </span>
+                  </div>
+                </div>
+
+                <div class="company-point">
+                  <div class="company-point-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </div>
+
+                  <div>
+                    <strong> Technology & Innovation </strong>
+
+                    <span> Business software and automation expertise. </span>
+                  </div>
+                </div>
+
+                <div class="company-point">
+                  <div class="company-point-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  </div>
+
+                  <div>
+                    <strong> Shivam HMIS Collaboration </strong>
+
+                    <span>
+                      Hospital management technology for Gujarat healthcare
+                      organizations.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         CAMPAIGN / EVENT
+    ====================================================== -->
+
+      <section class="section campaign" id="event">
+        <div class="container">
+          <div class="campaign-grid">
+            <div>
+              <div class="badge">
+                <span class="badge-dot"></span>
+                Live Campaign
+              </div>
+
+              <h2 style="margin-top: 15px">Gujarat Medical Expo 2026</h2>
+
+              <p>
+                Gujarat's Largest & No. 1 Medical Expo. Join TallyPower IT
+                Solutions at the innovative solutions designed to transform
+                modern healthcare operations.
+              </p>
+
+              <div class="campaign-details">
+                <div class="campaign-detail">
+                  <div class="campaign-detail-icon">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <rect x="3" y="4" width="18" height="18" rx="2" />
+                      <path d="M16 2v4M8 2v4M3 10h18" />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>25, 26, 27 September 2026</strong>
+                    <span>Three days of live demos and networking</span>
+                  </div>
+                </div>
+
+                <div class="campaign-detail">
+                  <div class="campaign-detail-icon">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <path
+                        d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Vigyan Bhavan, Gujarat Science City</strong>
+                    <span>Ahmedabad, Gujarat</span>
+                  </div>
+                </div>
+
+                <div class="campaign-detail">
+                  <div class="campaign-detail-icon">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                      <rect x="3" y="7" width="18" height="14" rx="2" />
+                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                    </svg>
+                  </div>
+                  <div>
+                    <strong>Stall No. 203</strong>
+                    <span>Visit us to see Shivam HMIS live</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hero-buttons" style="margin-top: 25px">
+                <a href="#demo" class="btn btn-white">
+                  Meet Us at the Expo →
+                </a>
+
+                <a href="tel:+919978991079" class="btn btn-outline">
+                  Call Us
+                </a>
+              </div>
+            </div>
+
+            <div class="campaign-image">
+              <img
+                src="images/PHOTO-2026-08-18-12-17-57.jpg"
+                alt="TallyPower IT Solutions at Gujarat Medical Expo 2026"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         DEMO
+    ====================================================== -->
+
+      <section class="section demo" id="demo">
+        <div class="container">
+          <div class="demo-grid">
+            <div>
+              <div class="badge">
+                <span class="badge-dot"></span>
+
+                Gujarat Demo
+              </div>
+
+              <h2 style="margin-top: 15px">
+                See Shivam HMIS with your hospital workflow.
+              </h2>
+
+              <p>
+                Request a product walkthrough with the TallyPower IT Solutions
+                team and explore the modules that match your hospital
+                requirements.
+              </p>
+
+              <div class="hero-buttons" style="margin-top: 25px">
+                <a href="tel:+919978991079" class="btn btn-white"> Call Us </a>
+              </div>
+            </div>
+
+            <div class="demo-card">
+              <h3>Request a Demo</h3>
+
+              <p>Tell us about your hospital and requirements.</p>
+
+              <form id="demoForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label> Full Name </label>
+
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label> Phone Number </label>
+
+                    <input type="tel" name="phone" placeholder="+91" required />
+                  </div>
+
+                  <div class="form-group">
+                    <label> Email Address </label>
+
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="you@hospital.com"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label> Hospital Name </label>
+
+                    <input
+                      type="text"
+                      name="hospital"
+                      placeholder="Hospital / Organization"
+                      required
+                    />
+                  </div>
+
+                  <div class="form-group">
+                    <label> City </label>
+
+                    <input type="text" name="city" placeholder="Vadodara" />
+                  </div>
+
+                  <div class="form-group">
+                    <label> Hospital Size </label>
+
+                    <select name="beds">
+                      <option value="">Select</option>
+
+                      <option>Under 25 beds</option>
+
+                      <option>25–50 beds</option>
+
+                      <option>50–100 beds</option>
+
+                      <option>100–250 beds</option>
+
+                      <option>250+ beds</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group">
+                    <label> Preferred Contact </label>
+
+                    <select name="contact">
+                      <option>Phone</option>
+
+                      <option>WhatsApp</option>
+
+                      <option>Email</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group full">
+                    <label> Requirements </label>
+
+                    <textarea
+                      name="message"
+                      rows="4"
+                      placeholder="Billing, Pharmacy, EMR, Control Tower, Finance..."
+                    ></textarea>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                  Send Demo Request →
+                </button>
+
+                <div class="form-note">
+                  Front-end demo form. Connect this form to your backend, CRM or
+                  email service before production.
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================
+         CONTACT
+    ====================================================== -->
+
+      <section class="section contact" id="contact">
+        <div class="container">
+          <div class="contact-grid">
+            <div>
+              <div class="badge">
+                <span class="badge-dot"></span>
+                Contact TallyPower
+              </div>
+
+              <h2 style="margin-top: 15px">
+                Let's discuss your hospital requirements.
+              </h2>
+
+              <p style="margin-top: 15px">
+                Connect with TallyPower IT Solutions for Shivam HMIS
+                implementation and product discussions.
+              </p>
+
+              <div class="contact-list">
+                <div class="contact-item">
+                  <div class="contact-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path
+                        d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.8.6 2.7a2 2 0 0 1-.4 2.1L8 9.9a16 16 0 0 0 6 6l1.4-1.4a2 2 0 0 1 2.1-.4c.9.3 1.8.5 2.7.6a2 2 0 0 1 1.8 2Z"
+                      />
+                    </svg>
+                  </div>
+
+                  <a href="tel:+919978991079"> +91 99789 91079 </a>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <path d="m2 7 10 6 10-6" />
+                    </svg>
+                  </div>
+
+                  <a href="mailto:sales@tallypower.com">
+                    sales@tallypower.com
+                  </a>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path
+                        d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                      />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                  </div>
+
+                  <span>
+                    205-206, Panorama Complex, Alkapuri, R. C. Dutt Road,
+                    Vadodara, Gujarat
+                  </span>
+                </div>
+
+                <div class="contact-item">
+                  <div class="contact-icon">
+                    <svg class="icon" viewBox="0 0 24 24">
+                      <path
+                        d="M10 13a5 5 0 0 0 7.5.4l2-2a5 5 0 0 0-7-7l-1.2 1.1"
+                      />
+                      <path
+                        d="M14 11a5 5 0 0 0-7.5-.4l-2 2a5 5 0 0 0 7 7l1.1-1.1"
+                      />
+                    </svg>
+                  </div>
+
+                  <a href="https://www.tallypower.com/" target="_blank">
+                    www.tallypower.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <div class="footer-brand">TALLYPOWER IT SOLUTIONS</div>
+
+            <div class="footer-small">
+              TallyPower • Vadodara, Gujarat • Shivam HMIS
+            </div>
+          </div>
+
+          <div class="footer-links">
+            <a href="#home"> Home </a>
+
+            <a href="#solutions"> Solutions </a>
+
+            <a href="#modules"> Modules </a>
+
+            <a href="#event"> Expo 2026 </a>
+
+            <a href="#demo"> Demo </a>
+
+            <a href="#contact"> Contact </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- TOAST -->
+
+    <div class="toast" id="toast">
+      Thank you! Your demo request has been submitted.
+    </div>
+
+    <!-- =======================================================
+       JAVASCRIPT
+  ======================================================== -->
+
+    <script>
+      /* ========================================================
+       MODULE TABS
+    ======================================================== */
+
+      const moduleTabs = document.querySelectorAll(".module-tab");
+
+      const modulePanels = document.querySelectorAll(".module-panel");
+
+      moduleTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          moduleTabs.forEach((item) => {
+            item.classList.remove("active");
+          });
+
+          modulePanels.forEach((panel) => {
+            panel.classList.remove("active");
+          });
+
+          tab.classList.add("active");
+
+          const moduleName = tab.dataset.module;
+
+          const selectedPanel = document.getElementById(moduleName);
+
+          if (selectedPanel) {
+            selectedPanel.classList.add("active");
+          }
+        });
+      });
+
+      /* ========================================================
+       MOBILE NAVIGATION
+    ======================================================== */
+
+      function toggleMobileMenu() {
+        const navLinks = document.querySelector(".nav-links");
+
+        if (navLinks.style.display === "flex") {
+          navLinks.style.display = "none";
+        } else {
+          navLinks.style.display = "flex";
+
+          navLinks.style.position = "absolute";
+
+          navLinks.style.top = "78px";
+
+          navLinks.style.left = "0";
+
+          navLinks.style.right = "0";
+
+          navLinks.style.padding = "20px";
+
+          navLinks.style.background = "#ffffff";
+
+          navLinks.style.flexDirection = "column";
+
+          navLinks.style.alignItems = "flex-start";
+
+          navLinks.style.borderBottom = "1px solid #e2e9f1";
+        }
+      }
+
+      /* ========================================================
+       CLOSE MOBILE MENU
+    ======================================================== */
+
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        link.addEventListener("click", () => {
+          if (window.innerWidth <= 1000) {
+            document.querySelector(".nav-links").style.display = "none";
+          }
+        });
+      });
+
+      /* ========================================================
+       DEMO FORM
+    ======================================================== */
+
+      const demoForm = document.getElementById("demoForm");
+
+      const toast = document.getElementById("toast");
+
+      demoForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        toast.classList.add("show");
+
+        demoForm.reset();
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3500);
+      });
+
+      /* ========================================================
+       SIMPLE SCROLL REVEAL
+    ======================================================== */
+
+      const revealElements = document.querySelectorAll(
+        ".feature-card, .module-card, .app-card, .stat",
+      );
+
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = "1";
+
+              entry.target.style.transform = "translateY(0)";
+
+              revealObserver.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.12,
+        },
+      );
+
+      revealElements.forEach((element) => {
+        element.style.opacity = "0";
+
+        element.style.transform = "translateY(20px)";
+
+        element.style.transition = "opacity .6s ease, transform .6s ease";
+
+        revealObserver.observe(element);
+      });
+
+      /* ========================================================
+       CURRENT YEAR
+    ======================================================== */
+
+      console.log("TallyPower IT Solutions × Shivam HMIS website loaded.");
+    </script>
+  </body>
+</html>
